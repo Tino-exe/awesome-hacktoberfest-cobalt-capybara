@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+struct Pokemon{
+    string nome;
+    int hp;
+    int attacco;
+    int difesa;
+};
+
+int main()
+{
+    int c=0;
+    struct Pokemon pokemon[2];
+    pokemon[0].nome = "Charizard";
+    pokemon[0].hp = 120;
+    pokemon[0].attacco = 100;
+    pokemon[0].difesa = 30;
+
+    pokemon[1].nome = "Blastoise";
+    pokemon[1].hp = 120;
+    pokemon[1].attacco = 40;
+    pokemon[1].difesa = 80;
+
+    cout<<"Inizio Battaglia"<<endl;
+    while(pokemon[0].hp>=0&&pokemon[1].hp>=0)
+    {
+        c=c+1;
+        cout<<"Turno n."<<c<<endl;
+        cout<<pokemon[0].nome<<" attacca "<<pokemon[1].nome<<" e inflegge "<<pokemon[0].attacco<<" danno "<<endl;
+        pokemon[1].hp = pokemon[1].hp - (pokemon[0].attacco-pokemon[1].difesa);
+        cout<<pokemon[1].nome<<" ora ha " << pokemon[1].hp<<"hp"<<endl;
+        if(pokemon[1].hp<=0)
+            break;
+        cout<<pokemon[1].nome<<" attacca "<<pokemon[0].nome<<" e inflegge "<<pokemon[1].attacco<<" danno "<<endl;
+        pokemon[0].hp = pokemon[0].hp - (pokemon[1].attacco-pokemon[0].difesa);
+        cout<<pokemon[0].nome<<" ora ha " << pokemon[0].hp<<"hp"<<endl;
+
+
+    }
+    if(pokemon[0].hp<0)
+        cout<<pokemon[0].nome<<" è stato sconfitto "<<endl;
+    else
+        cout<<pokemon[1].nome<<" è stato sconfitto "<<endl;
+
+
+    return 0;
+}
